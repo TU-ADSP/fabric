@@ -12,6 +12,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"math"
 	"strings"
 	"sync"
@@ -127,6 +128,16 @@ func chaincodeInvokeOrQuery(cmd *cobra.Command, invoke bool, cf *ChaincodeCmdFac
 	// call with empty txid to ensure production code generates a txid.
 	// otherwise, tests can explicitly set their own txid
 	txID := ""
+
+	log.Println("spec: ", spec)
+	log.Println("channelID: ", channelID)
+	log.Println("txID: ", txID)
+	log.Println("invoke: ", invoke)
+	log.Println("cf.Signer: ", cf.Signer)
+	log.Println("cf.Certificate: ", cf.Certificate)
+	log.Println("cf.EndorserClients: ", cf.EndorserClients)
+	log.Println("cf.DeliverClients: ", cf.DeliverClients)
+	log.Println("cf.BroadcastClient: ", cf.BroadcastClient)
 
 	proposalResp, err := ChaincodeInvokeOrQuery(
 		spec,

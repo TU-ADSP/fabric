@@ -11,6 +11,7 @@ import (
 	"crypto/tls"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"os"
 	"strings"
 	"time"
@@ -270,10 +271,12 @@ func configFromEnv(prefix string) (address, override string, clientConfig comm.C
 
 // getClientAuthInfoFromEnv reads client tls key file and cert file and returns the bytes for the files
 func getClientAuthInfoFromEnv(prefix string) ([]byte, []byte, error) {
+	log.Println("getClientAuthInfoFromEnv: keypath: ", config.GetPath(prefix+".tls.clientKey.file"))
 	keyPEM, err := ioutil.ReadFile(config.GetPath(prefix + ".tls.clientKey.file"))
 	if err != nil {
 		return nil, nil, errors.WithMessagef(err, "unable to load %s.tls.clientKey.file", prefix)
 	}
+	log.Println("getClientAuthInfoFromEnv: certpath: ", config.GetPath(prefix+".tls.clientCert.file"))
 	certPEM, err := ioutil.ReadFile(config.GetPath(prefix + ".tls.clientCert.file"))
 	if err != nil {
 		return nil, nil, errors.WithMessagef(err, "unable to load %s.tls.clientCert.file", prefix)

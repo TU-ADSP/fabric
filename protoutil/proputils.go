@@ -68,6 +68,7 @@ func CreateChaincodeProposalWithTxIDNonceAndTransient(txid string, typ common.He
 		return nil, "", errors.Wrap(err, "error marshaling ChaincodeHeaderExtension")
 	}
 
+	log.Printf("CreateChaincodeProposalWithTxIDNonceAndTransient: cis: %+v\n", cis)
 	cisBytes, err := proto.Marshal(cis)
 	if err != nil {
 		return nil, "", errors.Wrap(err, "error marshaling ChaincodeInvocationSpec")

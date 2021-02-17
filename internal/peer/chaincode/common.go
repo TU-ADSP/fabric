@@ -154,6 +154,8 @@ func chaincodeInvokeOrQuery(cmd *cobra.Command, invoke bool, cf *ChaincodeCmdFac
 		return errors.Errorf("%s - proposal response: %v", err, proposalResp)
 	}
 
+	log.Printf("proposalResp: %+v\n", proposalResp)
+
 	if invoke {
 		logger.Debugf("ESCC invoke result: %v", proposalResp)
 		pRespPayload, err := protoutil.UnmarshalProposalResponsePayload(proposalResp.Payload)

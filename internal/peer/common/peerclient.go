@@ -146,6 +146,7 @@ func GetEndorserClient(address, tlsRootCertFile string) (pb.EndorserClient, erro
 
 // GetClientCertificate returns the client's TLS certificate
 func GetClientCertificate() (tls.Certificate, error) {
+	log.Println("GetClientCertificate: clientAuthRequired: ", viper.GetBool("peer.tls.clientAuthRequired"))
 	if !viper.GetBool("peer.tls.clientAuthRequired") {
 		return tls.Certificate{}, nil
 	}

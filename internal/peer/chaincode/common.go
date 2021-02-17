@@ -482,6 +482,9 @@ func InitCmdFactory(cmdName string, isEndorserRequired, isOrdererRequired bool, 
 
 	log.Println("InitCmdFactory: cmdName: ", cmdName)
 	log.Println("InitCmdFactory: endorserClients: ", endorserClients)
+	for _, v := range endorserClients {
+		log.Println("InitCmdFactory: endorserClient: ", v)
+	}
 
 	certificate, err := common.GetClientCertificateFnc()
 	if err != nil {

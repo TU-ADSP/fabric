@@ -459,6 +459,7 @@ func InitCmdFactory(cmdName string, isEndorserRequired, isOrdererRequired bool, 
 		if err = validatePeerConnectionParameters(cmdName); err != nil {
 			return nil, errors.WithMessage(err, "error validating peer connection parameters")
 		}
+		log.Println("InitCmdFactory: peerAddresses: ", peerAddresses)
 		for i, address := range peerAddresses {
 			log.Println("InitCmdFactory: peerAddress: ", address)
 			var tlsRootCertFile string

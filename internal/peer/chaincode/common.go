@@ -460,6 +460,7 @@ func InitCmdFactory(cmdName string, isEndorserRequired, isOrdererRequired bool, 
 			return nil, errors.WithMessage(err, "error validating peer connection parameters")
 		}
 		log.Printf("InitCmdFactory: peerAddresses: %v\n", peerAddresses)
+		log.Printf("InitCmdFactory: peerAddresses len: %v\n", len(peerAddresses))
 		for i, address := range peerAddresses {
 			log.Printf("InitCmdFactory: peerAddress: %v\n", address)
 			var tlsRootCertFile string
@@ -482,10 +483,10 @@ func InitCmdFactory(cmdName string, isEndorserRequired, isOrdererRequired bool, 
 		}
 	}
 
-	log.Println("InitCmdFactory: cmdName: ", cmdName)
-	log.Println("InitCmdFactory: endorserClients: ", endorserClients)
+	log.Printf("InitCmdFactory: cmdName: %v\n", cmdName)
+	log.Printf("InitCmdFactory: endorserClients: %v\n", endorserClients)
 	for _, v := range endorserClients {
-		log.Println("InitCmdFactory: endorserClient: ", v)
+		log.Printf("InitCmdFactory: endorserClient: %v\n", v)
 	}
 
 	certificate, err := common.GetClientCertificateFnc()

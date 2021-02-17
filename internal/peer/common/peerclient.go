@@ -10,6 +10,7 @@ import (
 	"context"
 	"crypto/tls"
 	"io/ioutil"
+	"log"
 	"time"
 
 	pb "github.com/hyperledger/fabric-protos-go/peer"
@@ -130,10 +131,13 @@ func (pc *PeerClient) Certificate() tls.Certificate {
 // from the configuration settings for "peer.address" and
 // "peer.tls.rootcert.file"
 func GetEndorserClient(address, tlsRootCertFile string) (pb.EndorserClient, error) {
+	log.Println("GetEndorserClient: address: ", address)
+	log.Println("GetEndorserClient: tls: ", tlsRootCertFile)
 	peerClient, err := newPeerClient(address, tlsRootCertFile)
 	if err != nil {
 		return nil, err
 	}
+	log.Println("GetEndorserClient: peerClient: ", peerClient)
 	return peerClient.Endorser()
 }
 

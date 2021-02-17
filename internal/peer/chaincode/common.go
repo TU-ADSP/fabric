@@ -494,11 +494,13 @@ func InitCmdFactory(cmdName string, isEndorserRequired, isOrdererRequired bool, 
 	}
 
 	certificate, err := common.GetClientCertificateFnc()
+	log.Printf("InitCmdFactory: certificate: %+v\n", certificate)
 	if err != nil {
 		return nil, errors.WithMessage(err, "error getting client certificate")
 	}
 
 	signer, err := common.GetDefaultSignerFnc()
+	log.Printf("InitCmdFactory: signer: %+v\n", signer)
 	if err != nil {
 		return nil, errors.WithMessage(err, "error getting default signer")
 	}

@@ -31,7 +31,7 @@ func NewPeerClientFromEnv() (*PeerClient, error) {
 	log.Println("NewPeerClientFromEnv: address: ", address)
 	log.Println("NewPeerClientFromEnv: override: ", override)
 	log.Printf("NewPeerClientFromEnv: clientConfig: %+v\n", clientConfig)
-	log.Println("NewPeerClientFromEnv: theCert: ", clientConfig.SecOpts.ServerRootCAs[0])
+	log.Println("NewPeerClientFromEnv: theCert: ", string(clientConfig.SecOpts.ServerRootCAs[0]))
 	if err != nil {
 		return nil, errors.WithMessage(err, "failed to load config for PeerClient")
 	}

@@ -9,6 +9,7 @@ package protoutil
 import (
 	"crypto/sha256"
 	"encoding/hex"
+	"log"
 	"time"
 
 	"github.com/golang/protobuf/proto"
@@ -61,6 +62,7 @@ func CreateChaincodeProposalWithTxIDAndTransient(typ common.HeaderType, channelI
 // given input
 func CreateChaincodeProposalWithTxIDNonceAndTransient(txid string, typ common.HeaderType, channelID string, cis *peer.ChaincodeInvocationSpec, nonce, creator []byte, transientMap map[string][]byte) (*peer.Proposal, string, error) {
 	ccHdrExt := &peer.ChaincodeHeaderExtension{ChaincodeId: cis.ChaincodeSpec.ChaincodeId}
+	log.Printf("CreateChaincodeProposalWithTxIDNonceAndTransient: ccHdrExt: %+v\n", ccHdrExt)
 	ccHdrExtBytes, err := proto.Marshal(ccHdrExt)
 	if err != nil {
 		return nil, "", errors.Wrap(err, "error marshaling ChaincodeHeaderExtension")

@@ -28,6 +28,9 @@ type PeerClient struct {
 // Viper instance
 func NewPeerClientFromEnv() (*PeerClient, error) {
 	address, override, clientConfig, err := configFromEnv("peer")
+	log.Println("NewPeerClientFromEnv: address: ", address)
+	log.Println("NewPeerClientFromEnv: override: ", override)
+	log.Println("NewPeerClientFromEnv: clientConfig: ", clientConfig)
 	if err != nil {
 		return nil, errors.WithMessage(err, "failed to load config for PeerClient")
 	}

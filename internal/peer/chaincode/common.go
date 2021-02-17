@@ -479,6 +479,10 @@ func InitCmdFactory(cmdName string, isEndorserRequired, isOrdererRequired bool, 
 			return nil, errors.New("no endorser clients retrieved - this might indicate a bug")
 		}
 	}
+
+	log.Println("InitCmdFactory: cmdName: ", cmdName)
+	log.Println("InitCmdFactory: endorserClients: ", endorserClients)
+
 	certificate, err := common.GetClientCertificateFnc()
 	if err != nil {
 		return nil, errors.WithMessage(err, "error getting client certificate")
